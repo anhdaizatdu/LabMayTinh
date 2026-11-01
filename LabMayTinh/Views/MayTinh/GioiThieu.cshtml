@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Giới thiệu";
+    Layout = "_Layout1";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card pastel-card p-4 shadow-sm">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-3 mb-md-0">
+                        <img src="~/images/avatar.jpg" alt="Lê Anh Đại" class="img-fluid rounded-circle shadow border border-3 border-warning" style="width: 180px; height: 180px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/180';" />
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="fw-bold mb-1">Lê Anh Đại</h2>
+                        <p class="fs-5 text-muted mb-2">Sinh viên Lớp K26-ĐHSP Tin học</p>
+                        <h5 class="fw-bold text-primary mb-3">Trường Đại học Hồng Đức</h5>
+                        
+                        <div class="d-flex gap-2">
+                            <a href="https://www.facebook.com/phannguoi.quyet" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-facebook me-1"></i> Facebook</a>
+                            <a href="https://www.youtube.com/@@thaydai68_vlog" target="_blank" class="btn btn-outline-danger btn-sm"><i class="bi bi-youtube me-1"></i> YouTube</a>
+                            <a href="https://github.com/anhdaizatdu" target="_blank" class="btn btn-outline-dark btn-sm"><i class="bi bi-github me-1"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+
+                <h4 class="fw-bold mb-3">📘 Giới thiệu về Ứng dụng</h4>
+                <p class="fs-6 line-height-lg">
+                    Ứng dụng được xây dựng nhằm hỗ trợ tính toán cơ bản và thực hiện giải các bài toán đại số phổ biến như <strong>phương trình bậc nhất (ax + b = 0)</strong> và <strong>phương trình bậc hai (ax² + bx + c = 0)</strong>. 
+                </p>
+                <p class="fs-6">
+                    Điểm nổi bật của sản phẩm là khả năng trình bày <strong>chi tiết từng bước giải toán</strong> rõ ràng, hỗ trợ kiểm tra dữ liệu đầu vào thông minh và giao diện tùy biến hai chế độ <em>Sáng (Light Mode) / Tối (Dark Mode)</em> linh hoạt, mang lại trải nghiệm tối ưu cho người dùng.
+                </p>
+
+                <div class="mt-4 text-end">
+                    <a asp-controller="MayTinh" asp-action="Index" class="btn btn-pastel-primary px-4 fw-bold">Trải nghiệm ứng dụng ngay →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

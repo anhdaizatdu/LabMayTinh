@@ -1,0 +1,308 @@
+﻿@{
+    ViewData["Title"] = "Máy tính cơ bản";
+    Layout = "_Layout1";
+}
+
+<style>
+    /* Light Mode (Nền Trắng + Pastel Cam) */
+    body {
+        background: linear-gradient(135deg, #ffffff 0%, #ffe5d9 100%) !important;
+        min-height: 100vh;
+        color: #2b2d42;
+        transition: all 0.3s ease;
+    }
+
+    .pastel-card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 183, 178, 0.6);
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(255, 183, 178, 0.25);
+    }
+
+    .card-title-custom {
+        color: #2b2d42 !important;
+        font-weight: 700;
+    }
+
+    .text-math-symbol {
+        color: #2b2d42 !important;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    .btn-pastel-primary {
+        background-color: #ffb5a7 !important;
+        border: none;
+        color: #2b2d42 !important;
+        font-weight: bold;
+    }
+
+        .btn-pastel-primary:hover {
+            background-color: #fcd5ce !important;
+        }
+
+    .btn-pastel-success {
+        background-color: #b5e2fa !important;
+        border: none;
+        color: #2b2d42 !important;
+        font-weight: bold;
+    }
+
+        .btn-pastel-success:hover {
+            background-color: #e0f2fe !important;
+        }
+
+    .btn-pastel-warning {
+        background-color: #fde2e4 !important;
+        border: none;
+        color: #2b2d42 !important;
+        font-weight: bold;
+    }
+
+        .btn-pastel-warning:hover {
+            background-color: #fff1e6 !important;
+        }
+
+    .step-box {
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+
+    .step-item {
+        margin-bottom: 8px;
+        padding-left: 12px;
+        border-left: 4px solid #ffb5a7;
+    }
+
+    /* DARK MODE (Nền Đen + Pastel Xanh) - Ép chữ màu trắng sáng rõ */
+    body.dark-mode {
+        background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1b2a 100%) !important;
+        color: #ffffff !important;
+    }
+
+        body.dark-mode h2,
+        body.dark-mode .card-title-custom,
+        body.dark-mode .text-math-symbol,
+        body.dark-mode span,
+        body.dark-mode label,
+        body.dark-mode h5 {
+            color: #ffffff !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .pastel-card {
+            background: rgba(22, 27, 34, 0.95) !important;
+            border: 1px solid rgba(162, 210, 255, 0.3) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        body.dark-mode .form-control,
+        body.dark-mode .form-select {
+            background-color: #21262d !important;
+            color: #ffffff !important;
+            border: 1px solid #454f5b !important;
+        }
+
+            body.dark-mode .form-control::placeholder {
+                color: #8b949e !important;
+            }
+
+        body.dark-mode .btn-pastel-primary {
+            background-color: #a2d2ff !important;
+            color: #0d1b2a !important;
+        }
+
+        body.dark-mode .btn-pastel-success {
+            background-color: #bde0fe !important;
+            color: #0d1b2a !important;
+        }
+
+        body.dark-mode .btn-pastel-warning {
+            background-color: #ffafcc !important;
+            color: #0d1b2a !important;
+        }
+
+        /* Alert Boxes Trong Dark Mode */
+        body.dark-mode .alert-info {
+            background-color: #1e3a8a !important;
+            color: #f0f9ff !important;
+            border-color: #3b82f6 !important;
+        }
+
+        body.dark-mode .alert-warning {
+            background-color: #78350f !important;
+            color: #fef3c7 !important;
+            border-color: #f59e0b !important;
+        }
+
+        body.dark-mode .alert-danger {
+            background-color: #7f1d1d !important;
+            color: #fecaca !important;
+            border-color: #ef4444 !important;
+        }
+
+        body.dark-mode .alert-success {
+            background-color: #14532d !important;
+            color: #dcfce7 !important;
+            border-color: #22c55e !important;
+        }
+
+        body.dark-mode .step-item {
+            border-left-color: #a2d2ff !important;
+        }
+</style>
+
+<div class="container py-3">
+    <!-- Nút Switch Theme -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Máy tính cơ bản</h2>
+        <button id="themeToggle" class="btn btn-outline-secondary rounded-pill px-3 fw-bold" onclick="toggleTheme()">
+            🌙 Dark Mode
+        </button>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <!-- 1. PHÉP TÍNH HAI SỐ -->
+            <div class="card pastel-card mb-4">
+                <div class="card-body p-4">
+                    <h4 class="card-title-custom mb-3">1. Phép tính hai số</h4>
+                    <form asp-controller="MayTinh" asp-action="PhepTinhHaiSo" method="post">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-md-4">
+                                <input type="text" name="soA" value="@ViewBag.SoA" class="form-control form-control-lg" placeholder="Nhập số A" />
+                            </div>
+                            <div class="col-md-2">
+                                <select name="phepTinh" class="form-select form-select-lg text-center fw-bold">
+                                    <option value="+" selected="@(ViewBag.PhepTinh == "+")">+</option>
+                                    <option value="-" selected="@(ViewBag.PhepTinh == "-")">-</option>
+                                    <option value="*" selected="@(ViewBag.PhepTinh == "*")">*</option>
+                                    <option value="/" selected="@(ViewBag.PhepTinh == "/")">/</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="soB" value="@ViewBag.SoB" class="form-control form-control-lg" placeholder="Nhập số B" />
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-pastel-primary btn-lg w-100">Tính</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    @if (ViewBag.LoiPhepTinh != null)
+                    {
+                        <div class="alert alert-danger mt-3 mb-0 fs-5">⚠️ <strong>Lỗi:</strong> @ViewBag.LoiPhepTinh</div>
+                    }
+                    @if (ViewBag.KetQuaPhepTinh != null)
+                    {
+                        <div class="alert alert-success mt-3 mb-0 fs-5">✅ <strong>Kết quả:</strong> @ViewBag.KetQuaPhepTinh</div>
+                    }
+                </div>
+            </div>
+
+            <!-- 2. GIẢI PHƯƠNG TRÌNH BẬC 1 -->
+            <div class="card pastel-card mb-4">
+                <div class="card-body p-4">
+                    <h4 class="card-title-custom mb-3">2. Giải phương trình bậc 1: ax + b = 0</h4>
+                    <form asp-controller="MayTinh" asp-action="GiaiPTBac1" method="post">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-md-4">
+                                <input type="text" name="strA" value="@ViewBag.PT1_A" class="form-control form-control-lg" placeholder="Nhập hệ số a" />
+                            </div>
+                            <div class="col-auto text-math-symbol">x +</div>
+                            <div class="col-md-4">
+                                <input type="text" name="strB" value="@ViewBag.PT1_B" class="form-control form-control-lg" placeholder="Nhập hệ số b" />
+                            </div>
+                            <div class="col-auto text-math-symbol">= 0</div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-pastel-success btn-lg w-100">Giải</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    @if (ViewBag.LoiPT1 != null)
+                    {
+                        <div class="alert alert-danger mt-3 mb-0 fs-5">⚠️ <strong>Lỗi:</strong> @ViewBag.LoiPT1</div>
+                    }
+                    @if (ViewBag.CacBuocPT1 != null)
+                    {
+                        <div class="alert alert-info mt-3 mb-0 step-box">
+                            <h5 class="fw-bold text-decoration-underline mb-2">📌 Các bước giải chi tiết:</h5>
+                            @foreach (var buoc in (List<string>)ViewBag.CacBuocPT1)
+                            {
+                                <div class="step-item">@buoc</div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- 3. GIẢI PHƯƠNG TRÌNH BẬC 2 -->
+            <div class="card pastel-card mb-4">
+                <div class="card-body p-4">
+                    <h4 class="card-title-custom mb-3">3. Giải phương trình bậc 2: ax² + bx + c = 0</h4>
+                    <form asp-controller="MayTinh" asp-action="GiaiPTBac2" method="post">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-md-3">
+                                <input type="text" name="strA" value="@ViewBag.PT2_A" class="form-control form-control-lg" placeholder="a" />
+                            </div>
+                            <div class="col-auto text-math-symbol">x² +</div>
+                            <div class="col-md-3">
+                                <input type="text" name="strB" value="@ViewBag.PT2_B" class="form-control form-control-lg" placeholder="b" />
+                            </div>
+                            <div class="col-auto text-math-symbol">x +</div>
+                            <div class="col-md-3">
+                                <input type="text" name="strC" value="@ViewBag.PT2_C" class="form-control form-control-lg" placeholder="c" />
+                            </div>
+                            <div class="col-auto text-math-symbol">= 0</div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-pastel-warning btn-lg w-100">Giải</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    @if (ViewBag.LoiPT2 != null)
+                    {
+                        <div class="alert alert-danger mt-3 mb-0 fs-5">⚠️ <strong>Lỗi:</strong> @ViewBag.LoiPT2</div>
+                    }
+                    @if (ViewBag.CacBuocPT2 != null)
+                    {
+                        <div class="alert alert-warning mt-3 mb-0 step-box">
+                            <h5 class="fw-bold text-decoration-underline mb-2">📌 Các bước giải chi tiết:</h5>
+                            @foreach (var buoc in (List<string>)ViewBag.CacBuocPT2)
+                            {
+                                <div class="step-item">@buoc</div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('themeToggle');
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            btn.innerHTML = '☀️ Light Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            btn.innerHTML = '🌙 Dark Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    window.onload = function() {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').innerHTML = '☀️ Light Mode';
+        }
+    };
+</script>
